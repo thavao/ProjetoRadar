@@ -20,14 +20,19 @@ namespace Repositories
             {
                 
                 db.Open();
-                var radares = db.Query<Radar, DateOnly, Radar>(sql, (r, data) =>
-                {
-                    r.DataDaInativacao.Add(data);
-                    return r;
-                }, splitOn: "DataDaInativacao");
+                var radares = db.Query<Radar>(sql).ToList();
                 db.Close();
 
-                return (List<Radar>)radares;
+                foreach (var radar in radares)
+                {
+                    if (!string.IsNullOrEmpty(radar.DataDaInativacao))
+                    {
+                        radar.DataDaInativacaoData = radar.DataDaInativacao.Split(',')
+                            .Select(dateStr => DateOnly.Parse(dateStr.Trim()))
+                            .ToList();
+                    }
+                }
+                return radares;
             }
         }
     }

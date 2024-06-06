@@ -35,7 +35,8 @@ namespace Models
         public string Situacao { get; set; }
 
         [JsonProperty("data_da_inativacao")]
-        public List<DateOnly>? DataDaInativacao { get; set; }
+        public string DataDaInativacao { get; set; }
+        public List<DateOnly>? DataDaInativacaoData { get; set; }
 
         [JsonProperty("latitude")]
         public double Latitude { get; set; }
@@ -49,15 +50,16 @@ namespace Models
 
         public override string ToString()
         {
-            string datas = "";
-            if (DataDaInativacao != null)
-            {
-                foreach (var item in DataDaInativacao)
-                {
-                    datas += item.ToString("yyyy-MM-dd") + ", ";
-                }
-                
-            }
+            /*            string datas = "";
+                        if (DataDaInativacao != null)
+                        {
+                            foreach (var item in DataDaInativacao)
+                            {
+                                datas += item.ToString("yyyy-MM-dd") + ", ";
+                            }
+
+                        }
+                        datas += "\n";*/
 
             return
                $"Concessionária....: {Concessionaria}\n" +
@@ -72,8 +74,8 @@ namespace Models
                $"Situação..........: {Situacao}\n" +
                //$"Data da inativação: {(DataDaInativacao.Count() != 0 ? DataDaInativacao.Last().ToString("yyyy-MM-dd") : "N/A")}\n" +
                //$"Data da inativação: {string.Join(", ", DataDaInativacao)}" +
-               "Data da inativação: " + datas +
-               $"Latitude..........: {Latitude}\n" +
+               "Data da inativação: " + DataDaInativacao +
+               $"\nLatitude..........: {Latitude}\n" +
                $"Longitude.........: {Longitude}\n" +
                $"Velocidade limite.: {VelocidadeLeve}";
 
@@ -82,7 +84,7 @@ namespace Models
         public string ToCSV()
         {
             return $"{Concessionaria};{AnoDoPnvSnv};{TipoDeRadar};{Rodovia};{Uf};{KmM};{Municipio};{TipoPista};{Sentido};{Situacao};" +
-                   $"{(DataDaInativacao != null ? DataDaInativacao.Last().ToString("yyyy-MM-dd") : "N/A")};{Latitude};{Longitude};{VelocidadeLeve}";
+                   $"{DataDaInativacao};{Latitude};{Longitude};{VelocidadeLeve}";
         }
 
         public string ToJson()
@@ -105,7 +107,7 @@ namespace Models
                         new XElement("tipo_pista", TipoPista),
                         new XElement("sentido", Sentido),
                         new XElement("situacao", Situacao),
-                        new XElement("data_da_inativacao", (DataDaInativacao != null ? DataDaInativacao.Last().ToString("yyyy-MM-dd") : string.Empty)),
+                        new XElement("data_da_inativacao", (DataDaInativacao)),
                         new XElement("latitude", Latitude),
                         new XElement("longitude", Longitude),
                         new XElement("velocidade_leve", VelocidadeLeve)
@@ -115,4 +117,5 @@ namespace Models
         }
     }
 }
+
 
