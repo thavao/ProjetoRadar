@@ -11,6 +11,10 @@ namespace Controllers
             _radarService = new();
         }
 
+        public List<Radar> GetTodos()
+        {
+            return _radarService.GetTodos();
+        }
         public void InserirTodos(List<Radar> radares)
         {
             _radarService.InserirTodos(radares);

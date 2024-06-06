@@ -1,10 +1,8 @@
 ﻿using Repositories;
 using Models;
+using Controllers;
 
 List<Radar> r = new RadarRepository().GetTodos();
 
-foreach (var item in r)
-{
-    Console.WriteLine(item);
-    Console.WriteLine();
-}
+new RadarController().InserirTodos(r);
+Console.WriteLine("FIM");

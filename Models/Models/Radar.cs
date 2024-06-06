@@ -4,6 +4,7 @@ namespace Models
 {
     public class Radar
     {
+        
         [JsonProperty("concessionaria")]
         public string Concessionaria { get; set; }
 
@@ -50,16 +51,6 @@ namespace Models
 
         public override string ToString()
         {
-            /*            string datas = "";
-                        if (DataDaInativacao != null)
-                        {
-                            foreach (var item in DataDaInativacao)
-                            {
-                                datas += item.ToString("yyyy-MM-dd") + ", ";
-                            }
-
-                        }
-                        datas += "\n";*/
 
             return
                $"Concessionária....: {Concessionaria}\n" +

@@ -12,7 +12,11 @@ namespace Services
             _radarRepository = new();
         }
 
-        public void InserirTodos(List<Radar>radares)
+        public List<Radar> GetTodos()
+        {
+            return _radarRepository.GetTodos();
+        }
+        public void InserirTodos(List<Radar> radares)
         {
             _radarRepository.InserirTodos(radares);
         }
