@@ -35,7 +35,7 @@ namespace Models
         public string Situacao { get; set; }
 
         [JsonProperty("data_da_inativacao")]
-        public DateTime[]? DataDaInativacao { get; set; } = null;
+        public List<DateOnly>? DataDaInativacao { get; set; }
 
         [JsonProperty("latitude")]
         public double Latitude { get; set; }
@@ -46,8 +46,36 @@ namespace Models
         [JsonProperty("velocidade_leve")]
         public int VelocidadeLeve { get; set; }
 
+        public Radar(string concessionaria, int anoDoPnvSnv, string tipoDeRadar, string rodovia, string uf, double kmM, string municipio, string tipoPista, string sentido, string situacao, List<DateOnly>? dataDaInativacao, double latitude, double longitude, int velocidadeLeve)
+        {
+            Concessionaria = concessionaria;
+            AnoDoPnvSnv = anoDoPnvSnv;
+            TipoDeRadar = tipoDeRadar;
+            Rodovia = rodovia;
+            Uf = uf;
+            KmM = kmM;
+            Municipio = municipio;
+            TipoPista = tipoPista;
+            Sentido = sentido;
+            Situacao = situacao;
+            DataDaInativacao = dataDaInativacao;
+            Latitude = latitude;
+            Longitude = longitude;
+            VelocidadeLeve = velocidadeLeve;
+        }
+
         public override string ToString()
-        { 
+        {
+            string datas = "";
+            if (DataDaInativacao != null)
+            {
+                foreach (var item in DataDaInativacao)
+                {
+                    datas += item.ToString("yyyy-MM-dd") + ", ";
+                }
+                
+            }
+
             return
                $"Concessionária....: {Concessionaria}\n" +
                $"Ano do PNV/SNV....: {AnoDoPnvSnv}\n" +
@@ -59,8 +87,9 @@ namespace Models
                $"Tipo de pista.....: {TipoPista}\n" +
                $"Sentido...........: {Sentido}\n" +
                $"Situação..........: {Situacao}\n" +
-               $"Data da inativação: {(DataDaInativacao.Length != 0 ? DataDaInativacao.Last().ToString("yyyy-MM-dd") : "N/A")}\n" +
-               //{string.Join(", ", DataDaInativacao)}
+               //$"Data da inativação: {(DataDaInativacao.Count() != 0 ? DataDaInativacao.Last().ToString("yyyy-MM-dd") : "N/A")}\n" +
+               //$"Data da inativação: {string.Join(", ", DataDaInativacao)}" +
+               "Data da inativação: " + datas +
                $"Latitude..........: {Latitude}\n" +
                $"Longitude.........: {Longitude}\n" +
                $"Velocidade limite.: {VelocidadeLeve}";

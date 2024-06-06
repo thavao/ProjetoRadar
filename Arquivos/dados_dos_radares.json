@@ -10235,9 +10235,7 @@
             "tipo_pista": "Principal",
             "sentido": "Decrescente",
             "situacao": "Ativo",
-            "data_da_inativacao": [
-                "27/04/2018"
-            ],
+            "data_da_inativacao": [],
             "latitude": "-28,803798",
             "longitude": "-52,507508",
             "velocidade_leve": "60"
