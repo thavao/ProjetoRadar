@@ -11,8 +11,6 @@ string caminho = "../" + "../" +"../" +"../" + "../" + "Arquivos";
 string arquivo = @"\dados_dos_radares.json";
 
 
-Console.WriteLine(caminho);
-
 var settings = new JsonSerializerSettings
 {
     Culture = new CultureInfo("pt-BR"),
