@@ -46,23 +46,6 @@ namespace Models
         [JsonProperty("velocidade_leve")]
         public int VelocidadeLeve { get; set; }
 
-        public Radar(string concessionaria, int anoDoPnvSnv, string tipoDeRadar, string rodovia, string uf, double kmM, string municipio, string tipoPista, string sentido, string situacao, List<DateOnly>? dataDaInativacao, double latitude, double longitude, int velocidadeLeve)
-        {
-            Concessionaria = concessionaria;
-            AnoDoPnvSnv = anoDoPnvSnv;
-            TipoDeRadar = tipoDeRadar;
-            Rodovia = rodovia;
-            Uf = uf;
-            KmM = kmM;
-            Municipio = municipio;
-            TipoPista = tipoPista;
-            Sentido = sentido;
-            Situacao = situacao;
-            DataDaInativacao = dataDaInativacao;
-            Latitude = latitude;
-            Longitude = longitude;
-            VelocidadeLeve = velocidadeLeve;
-        }
 
         public override string ToString()
         {
